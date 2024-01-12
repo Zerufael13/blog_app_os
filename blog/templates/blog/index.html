@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="fw-bolder">Gezana Blog</h1>
+        <h5>A blog about our House</h5>
+    </div>
+    {% for object in object_list %}
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{object.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Uploaded By: {{object.author.username}}</h6>
+                <p class="card-text">{{object.content| truncatechars:150 }}</p>
+                <div class="container">
+                    <a class="btn btn-success" href="{% url 'detail_article' object.id %}" role="button">Read More...</a>
+                </div>
+                <p class="card-text"><small class="text-muted">{{object.date}}</small></p>
+            </div>
+        </div>
+      </div>
+    {% endfor %}
+{% endblock content %}
